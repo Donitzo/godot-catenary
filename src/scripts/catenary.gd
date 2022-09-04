@@ -186,6 +186,9 @@ func _update_curve() -> void:
     var h:float = sqrt(shift.x * shift.x + shift.z * shift.z)
     var v:float = shift.y
     var c:float = sqrt(l * l - v * v)
+    
+    if h == 0:
+        return
 
     # Exponentially grow "a" range to a maximum of 2^32
     
