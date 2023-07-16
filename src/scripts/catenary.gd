@@ -128,6 +128,7 @@ func _create_mesh_instance() -> void:
     _mesh_instance.material_override = _material
 
     add_child(_mesh_instance)
+    _mesh_instance.owner = self
 
     # If no mesh is assigned, just create an empty mesh instance
     if mesh == null:
