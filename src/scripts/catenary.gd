@@ -103,6 +103,9 @@ func _process(_delta:float) -> void:
         _update_curve()
 
 func _create_mesh_instance() -> void:
+    if mesh == null:
+        return
+
     # Enable transform notifications for this spatial
     set_notify_transform(true)
 
