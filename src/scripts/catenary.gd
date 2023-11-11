@@ -133,11 +133,6 @@ func _create_mesh_instance() -> void:
 
     add_child(_mesh_instance)
 
-    # The mesh instance is an orphan in the editor which will not be saved with the scene,
-    # otherwise the override material (+ textures) would be saved with the scene in the editor.
-    if not Engine.is_editor_hint():
-        _mesh_instance.owner = self
-
     # If no mesh is assigned, just create an empty mesh instance
     if mesh == null:
         return
