@@ -144,7 +144,10 @@ func _create_mesh_instance() -> void:
 	# You may need to replace these uniforms based on what kind of shader is used on the mesh.
 	# These uniforms act as a standard SchlickGGX shader in Godot.
 	var material:StandardMaterial3D = mesh.surface_get_material(0)
-	_material.set_shader_parameter("albedo", material.albedo_texture)
+	_material.set_shader_parameter("albedo", material.albedo_color)
+	_material.set_shader_parameter("texture_albedo", material.albedo_texture)
+	_material.set_shader_parameter("metallic", material.metallic)
+	_material.set_shader_parameter("roughness", material.roughness)
 
 func _update_curve() -> void:
 	# Create a mesh instance of none exists
