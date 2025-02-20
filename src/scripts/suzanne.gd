@@ -1,3 +1,4 @@
+@tool
 """
     Asset: Godot Dynamic Catenary
     File: suzenne.gd
@@ -6,8 +7,7 @@
     License: MIT License
 """
 
-tool
-extends Spatial
+extends Node3D
 
 var _total_seconds:float
 
@@ -36,20 +36,20 @@ func _process(delta:float) -> void:
         return
     
     var t:float = ease(min(1, 1.0 - _move_seconds / _move_duration), _move_easing)
-    translation = _start_position.linear_interpolate(_target_position, t)
+    position = _start_position.lerp(_target_position, t)
     rotation = Vector3(
         lerp_angle(_start_rotation.x, _target_rotation.x, t),
         lerp_angle(_start_rotation.y, _target_rotation.y, t),
         lerp_angle(_start_rotation.z, _target_rotation.z, t))
 
 func _start_move() -> void:
-    _move_duration = 1.1 + sin(_total_seconds) * rand_range(0.5, 1)
+    _move_duration = 1.1 + sin(_total_seconds) * randf_range(0.5, 1)
     _move_seconds = _move_duration
-    _move_easing = rand_range(-4, 4)
-    _wait_seconds = max(rand_range(-5, 1), 0)
+    _move_easing = randf_range(-4, 4)
+    _wait_seconds = max(randf_range(-5, 1), 0)
     
-    _start_position = translation
+    _start_position = position
     _start_rotation = rotation
     
-    _target_position = Vector3(0, 1.3, 0) + Vector3(rand_range(-0.5, 0.5), rand_range(-0.3, 0.3), rand_range(-0.5, 0.5))
-    _target_rotation = Vector3(rand_range(-0.5, 0.5), rand_range(-1, 1), rand_range(-0.5, 0.5))
+    _target_position = Vector3(0, 1.3, 0) + Vector3(randf_range(-0.5, 0.5), randf_range(-0.3, 0.3), randf_range(-0.5, 0.5))
+    _target_rotation = Vector3(randf_range(-0.5, 0.5), randf_range(-1, 1), randf_range(-0.5, 0.5))
